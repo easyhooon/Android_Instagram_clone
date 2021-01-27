@@ -43,7 +43,6 @@ class UserAdapter (private var mContext: Context,
         val user = mUser[position]
         holder.userNameTextView.text = user.getUsername()
         holder.userFullnameTextView.text = user.getFullname()
-
         Picasso.get().load(user.getImage()).placeholder(R.drawable.profile).into(holder.userProfileImage)
 
         checkFollowingStatus(user.getUID(), holder.followButton)
@@ -126,12 +125,16 @@ class UserAdapter (private var mContext: Context,
                     .child("Follow").child(itl.toString())
                     .child("Following")
         }
+
         followingRef.addValueEventListener(object : ValueEventListener
         {
-            override fun onDataChange(datasnapshot: DataSnapshot) {
-                if (datasnapshot.child(uid).exists()) {
+            override fun onDataChange(datasnapshot: DataSnapshot)
+            {
+                if (datasnapshot.child(uid).exists())
+                {
                     followButton.text = "Following"
-                } else
+                }
+                else
                 {
                     followButton.text = "Follow"
                 }

@@ -80,11 +80,17 @@ class SignUpActivity : AppCompatActivity() {
         userMap["bio"] = "hey i am using Coding Cafe Instagram Clone App."
         userMap["image"] = "https://firebasestorage.googleapis.com/v0/b/instagram-clone-app-510dd.appspot.com/o/profile.png?alt=media&token=c0094d59-dd5b-4253-adaf-433141353f10"
 
-        usersRef.child(currentUserID).setValue(userMap).addOnCompleteListener { task ->
+        usersRef.child(currentUserID).setValue(userMap)
+                .addOnCompleteListener { task ->
             if( task.isSuccessful)
             {
                 progressDialog.dismiss()
                 Toast.makeText(this, "Account has been created successfully", Toast.LENGTH_LONG).show()
+
+                FirebaseDatabase.getInstance().reference
+                        .child("Follow").child(currentUserID)
+                        .child("Following").child(currentUserID)
+                        .setValue(true)
 
                 val intent = Intent(this@SignUpActivity, MainActivity::class.java)
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)

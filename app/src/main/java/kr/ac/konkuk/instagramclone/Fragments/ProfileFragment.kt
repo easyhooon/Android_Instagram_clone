@@ -14,7 +14,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.squareup.picasso.Picasso
-import kr.ac.konkuk.instagramclone.AccountSettingActivity
+import kr.ac.konkuk.instagramclone.AccountSettingsActivity
 import kr.ac.konkuk.instagramclone.R
 import kotlinx.android.synthetic.main.fragment_profile.view.*
 import kr.ac.konkuk.instagramclone.Model.User
@@ -63,13 +63,13 @@ class ProfileFragment : Fragment() {
 
             when
             {
-                getButtonText == "Edit Profile" -> startActivity(Intent(context, AccountSettingActivity::class.java))
+                getButtonText == "Edit Profile" -> startActivity(Intent(context, AccountSettingsActivity::class.java))
 
                 getButtonText == "Follow" -> {
 
                     firebaseUser?.uid.let { itl ->
                         FirebaseDatabase.getInstance().reference
-                                .child("Follow").child(toString())
+                                .child("Follow").child(itl.toString())
                                 .child("Following").child(profileId)
                                 .setValue(true)
                     }
@@ -80,7 +80,6 @@ class ProfileFragment : Fragment() {
                                 .child("Followers").child(itl.toString())
                                 .setValue(true)
                     }
-
 
                 }
 
@@ -88,22 +87,21 @@ class ProfileFragment : Fragment() {
 
                     firebaseUser?.uid.let { itl ->
                         FirebaseDatabase.getInstance().reference
-                                .child("Follow").child(toString())
+                                .child("Follow").child(itl.toString())
                                 .child("Following").child(profileId)
                                 .removeValue()
-                    }
+                        }
 
                     firebaseUser?.uid.let { itl ->
                         FirebaseDatabase.getInstance().reference
                                 .child("Follow").child(profileId)
                                 .child("Followers").child(itl.toString())
                                 .removeValue()
+                        }
+
                     }
-
-
                 }
         }
-    }
 
         getFollowers()
         getFollowings()
