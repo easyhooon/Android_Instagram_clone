@@ -1,14 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="kr.ac.konkuk.instagramclone.Fragments.SearchFragment">
+    tools:context=".Fragments.SearchFragment">
+
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/app_bar_layout_search"
-        android:background="@android:color/white">
+        android:background="@android:color/white"
+        >
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/search_toolbar"
@@ -17,7 +20,8 @@
             android:layout_marginTop="4dp"
             android:layout_marginLeft="6dp"
             android:layout_marginRight="6dp"
-            android:background="@drawable/button_black_background">
+            android:background="@drawable/button_black_background"
+            >
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -37,7 +41,6 @@
                     android:layout_marginStart="6dp"
                     android:layout_marginEnd="15dp"
                     android:textColor="@color/colorPrimary"
-                    android:layout_marginRight="19dp"
                     android:hint="Search..."
                     android:layout_toEndOf="@+id/search_fragment_icon"
                     />
@@ -46,17 +49,19 @@
 
         </androidx.appcompat.widget.Toolbar>
 
-
     </com.google.android.material.appbar.AppBarLayout>
+
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view_search"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:visibility="gone"
-        android:layout_below="@+id/app_bar_layout_search">
-
-
+        android:layout_below="@+id/app_bar_layout_search"
+        >
     </androidx.recyclerview.widget.RecyclerView>
+
+
 
 </RelativeLayout>

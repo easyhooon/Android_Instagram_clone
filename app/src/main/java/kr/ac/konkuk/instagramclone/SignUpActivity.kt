@@ -77,7 +77,7 @@ class SignUpActivity : AppCompatActivity() {
         userMap["fullname"] = fullName.toLowerCase()
         userMap["username"] = userName.toLowerCase()
         userMap["email"] = email
-        userMap["bio"] = "hey i am using Coding Cafe Instagram Clone App."
+        userMap["bio"] = "default"
         userMap["image"] = "https://firebasestorage.googleapis.com/v0/b/instagram-clone-app-510dd.appspot.com/o/profile.png?alt=media&token=c0094d59-dd5b-4253-adaf-433141353f10"
 
         usersRef.child(currentUserID).setValue(userMap)

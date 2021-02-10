@@ -22,6 +22,7 @@ import kr.ac.konkuk.instagramclone.Fragments.ProfileFragment
 import kr.ac.konkuk.instagramclone.Model.User
 import kr.ac.konkuk.instagramclone.R
 
+
 class UserAdapter (private var mContext: Context,
                    private var mUser: List<User>,
                    private var isFragment: Boolean = false) : RecyclerView.Adapter<UserAdapter.ViewHolder>()
@@ -66,10 +67,10 @@ class UserAdapter (private var mContext: Context,
                         .setValue(true).addOnCompleteListener{ task ->
                             if(task.isSuccessful)
                             {
-                                firebaseUser?.uid.let { itl ->
+                                firebaseUser?.uid.let { it ->
                                     FirebaseDatabase.getInstance().reference
                                         .child("Follow").child(user.getUID())
-                                        .child("Followers").child(itl.toString())
+                                        .child("Followers").child(it.toString())
                                         .setValue(true).addOnCompleteListener { task ->
                                             if (task.isSuccessful)
                                             {
@@ -91,10 +92,10 @@ class UserAdapter (private var mContext: Context,
                         .removeValue().addOnCompleteListener{ task ->
                             if(task.isSuccessful)
                             {
-                                firebaseUser?.uid.let { itl ->
+                                firebaseUser?.uid.let { it ->
                                     FirebaseDatabase.getInstance().reference
                                         .child("Follow").child(user.getUID())
-                                        .child("Followers").child(itl.toString())
+                                        .child("Followers").child(it.toString())
                                         .removeValue().addOnCompleteListener { task ->
                                             if (task.isSuccessful)
                                             {
@@ -114,7 +115,7 @@ class UserAdapter (private var mContext: Context,
     {
         var userNameTextView: TextView = itemView.findViewById(R.id.user_name_search)
         var userFullnameTextView: TextView = itemView.findViewById(R.id.user_full_name_search)
-        var userProfileImage: CircleImageView = itemView.findViewById(R.id.username_profile_image_search)
+        var userProfileImage: CircleImageView = itemView.findViewById(R.id.user_profile_image_search)
         var followButton: Button = itemView.findViewById(R.id.follow_btn_search)
 
     }

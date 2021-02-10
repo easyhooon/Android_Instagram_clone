@@ -36,7 +36,7 @@ class SignInActivity : AppCompatActivity() {
 
             else -> {
                 val progressDialog = ProgressDialog(this@SignInActivity)
-                progressDialog.setTitle("SignIn")
+                progressDialog.setTitle("Login")
                 progressDialog.setMessage("Please wait, this may take a while...")
                 progressDialog.setCanceledOnTouchOutside(false)
                 progressDialog.show()

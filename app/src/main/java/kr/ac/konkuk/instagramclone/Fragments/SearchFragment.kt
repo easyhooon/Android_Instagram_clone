@@ -25,8 +25,7 @@ private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
- * Use the [SearchFragment.newInstance] factory method to
- * create an instance of this fragment.
+ *
  */
 class SearchFragment : Fragment()
 {

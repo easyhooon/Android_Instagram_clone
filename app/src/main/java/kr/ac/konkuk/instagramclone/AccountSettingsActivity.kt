@@ -156,7 +156,7 @@ class AccountSettingsActivity : AppCompatActivity()
                 var uploadTask: StorageTask<*>
                 uploadTask = fileRef.putFile(imageUri!!)
 
-                uploadTask.continueWithTask(Continuation<UploadTask.TaskSnapshot, Task<Uri>> { task ->
+                uploadTask.continueWithTask(Continuation <UploadTask.TaskSnapshot, Task<Uri>> { task ->
                     if (!task.isSuccessful)
                     {
                         task.exception?.let {
@@ -166,7 +166,8 @@ class AccountSettingsActivity : AppCompatActivity()
                     }
                     return@Continuation fileRef.downloadUrl
                 }).addOnCompleteListener (OnCompleteListener<Uri> { task ->
-                    if (task.isSuccessful) {
+                    if (task.isSuccessful)
+                    {
                         val downloadUrl = task.result
                         myUrl = downloadUrl.toString()
 

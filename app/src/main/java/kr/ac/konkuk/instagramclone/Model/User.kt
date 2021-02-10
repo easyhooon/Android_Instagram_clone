@@ -34,7 +34,7 @@ class User
         return fullname
     }
 
-    fun setFullname(username: String)
+    fun setFullname(fullname: String)
     {
         this.fullname = fullname
     }
