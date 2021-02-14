@@ -57,8 +57,7 @@ class HomeFragment : Fragment() {
     private fun checkFollowings() {
         followingList = ArrayList()
 
-        val followingRef =
-            FirebaseDatabase.getInstance().reference
+        val followingRef = FirebaseDatabase.getInstance().reference
                     .child("Follow").child(FirebaseAuth.getInstance().currentUser!!.uid)
                     .child("Following")
 
@@ -107,7 +106,6 @@ class HomeFragment : Fragment() {
                         {
                             postList!!.add(post)
                         }
-
                         postAdapter!!.notifyDataSetChanged()
                     }
                 }

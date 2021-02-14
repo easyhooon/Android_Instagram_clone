@@ -20,24 +20,38 @@ class SignUpActivity : AppCompatActivity() {
             startActivity(Intent(this, SignInActivity::class.java))
         }
 
-        signup_btn.setOnClickListener{
+        signup_btn.setOnClickListener {
             CreateAccount()
         }
     }
 
-    private fun CreateAccount()
-    {
+    private fun CreateAccount() {
         val fullName = fullname_signup.text.toString()
         val userName = username_signup.text.toString()
         val email = email_signup.text.toString()
         val password = password_signup.text.toString()
 
-        when
-        {
-            TextUtils.isEmpty(fullName) -> Toast.makeText(this, "full name is required.", Toast.LENGTH_LONG).show()
-            TextUtils.isEmpty(userName) -> Toast.makeText(this, "user name is required.", Toast.LENGTH_LONG).show()
-            TextUtils.isEmpty(email) -> Toast.makeText(this, "email is required.", Toast.LENGTH_LONG).show()
-            TextUtils.isEmpty(password) -> Toast.makeText(this, "password is required.", Toast.LENGTH_LONG).show()
+        when {
+            TextUtils.isEmpty(fullName) -> Toast.makeText(
+                this,
+                "full name is required.",
+                Toast.LENGTH_LONG
+            ).show()
+            TextUtils.isEmpty(userName) -> Toast.makeText(
+                this,
+                "user name is required.",
+                Toast.LENGTH_LONG
+            ).show()
+            TextUtils.isEmpty(email) -> Toast.makeText(
+                this,
+                "email is required.",
+                Toast.LENGTH_LONG
+            ).show()
+            TextUtils.isEmpty(password) -> Toast.makeText(
+                this,
+                "password is required.",
+                Toast.LENGTH_LONG
+            ).show()
 
             else -> {
                 val progressDialog = ProgressDialog(this@SignUpActivity)
@@ -46,17 +60,14 @@ class SignUpActivity : AppCompatActivity() {
                 progressDialog.setCanceledOnTouchOutside(false)
                 progressDialog.show()
 
-                val mAuth:FirebaseAuth = FirebaseAuth.getInstance()
+                val mAuth: FirebaseAuth = FirebaseAuth.getInstance()
 
                 mAuth.createUserWithEmailAndPassword(email, password)
-                    .addOnCompleteListener{ task ->
-                        if (task.isSuccessful)
-                        {
+                    .addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
                             saveUserInfo(fullName, userName, email, progressDialog)
 
-                        }
-                        else
-                        {
+                        } else {
                             val message = task.exception!!.toString()
                             Toast.makeText(this, "Error: $message", Toast.LENGTH_LONG).show()
                             mAuth.signOut()
@@ -67,8 +78,12 @@ class SignUpActivity : AppCompatActivity() {
         }
     }
 
-    private fun saveUserInfo(fullName: String, userName: String, email: String, progressDialog: ProgressDialog)
-    {
+    private fun saveUserInfo(
+        fullName: String,
+        userName: String,
+        email: String,
+        progressDialog: ProgressDialog
+    ) {
         val currentUserID = FirebaseAuth.getInstance().currentUser!!.uid
         val usersRef: DatabaseReference = FirebaseDatabase.getInstance().reference.child("Users")
 
@@ -78,34 +93,33 @@ class SignUpActivity : AppCompatActivity() {
         userMap["username"] = userName.toLowerCase()
         userMap["email"] = email
         userMap["bio"] = "default"
-        userMap["image"] = "https://firebasestorage.googleapis.com/v0/b/instagram-clone-app-510dd.appspot.com/o/profile.png?alt=media&token=c0094d59-dd5b-4253-adaf-433141353f10"
+        userMap["image"] =
+            "https://firebasestorage.googleapis.com/v0/b/instagram-clone-app-510dd.appspot.com/o/profile.png?alt=media&token=c0094d59-dd5b-4253-adaf-433141353f10"
 
         usersRef.child(currentUserID).setValue(userMap)
-                .addOnCompleteListener { task ->
-            if( task.isSuccessful)
-            {
-                progressDialog.dismiss()
-                Toast.makeText(this, "Account has been created successfully", Toast.LENGTH_LONG).show()
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    progressDialog.dismiss()
+                    Toast.makeText(this, "Account has been created successfully", Toast.LENGTH_LONG)
+                        .show()
 
-                FirebaseDatabase.getInstance().reference
+                    FirebaseDatabase.getInstance().reference
                         .child("Follow").child(currentUserID)
                         .child("Following").child(currentUserID)
                         .setValue(true)
 
-                val intent = Intent(this@SignUpActivity, MainActivity::class.java)
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
-                startActivity(intent)
-                finish()
-            }
-            else
-            {
-                val message = task.exception!!.toString()
-                Toast.makeText(this, "Error: $message", Toast.LENGTH_LONG).show()
-                FirebaseAuth.getInstance().signOut()
-                progressDialog.dismiss()
-            }
+                    val intent = Intent(this@SignUpActivity, MainActivity::class.java)
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
+                    startActivity(intent)
+                    finish()
+                } else {
+                    val message = task.exception!!.toString()
+                    Toast.makeText(this, "Error: $message", Toast.LENGTH_LONG).show()
+                    FirebaseAuth.getInstance().signOut()
+                    progressDialog.dismiss()
+                }
 
-        }
+            }
 
     }
 

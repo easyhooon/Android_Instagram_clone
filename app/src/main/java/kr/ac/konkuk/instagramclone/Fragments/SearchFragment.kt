@@ -27,8 +27,7 @@ private const val ARG_PARAM2 = "param2"
  * A simple [Fragment] subclass.
  *
  */
-class SearchFragment : Fragment()
-{
+class SearchFragment : Fragment() {
     private var recyclerView: RecyclerView? = null
     private var userAdapter: UserAdapter? = null
     private var mUser: MutableList<User>? = null
@@ -49,28 +48,22 @@ class SearchFragment : Fragment()
         userAdapter = context?.let { UserAdapter(it, mUser as ArrayList<User>, true) }
         recyclerView?.adapter = userAdapter
 
-        view.search_edit_text.addTextChangedListener(object: TextWatcher
-        {
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int)
-            {
+        view.search_edit_text.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                if (view.search_edit_text.text.toString() == "")
-                {
+                if (view.search_edit_text.text.toString() == "") {
 
-                }
-                else
-                {
-                    recyclerView?.visibility=View.VISIBLE
+                } else {
+                    recyclerView?.visibility = View.VISIBLE
 
                     retrieveUsers()
                     searchUser(s.toString().toLowerCase())
                 }
             }
 
-            override fun afterTextChanged(s: Editable?)
-            {
+            override fun afterTextChanged(s: Editable?) {
             }
 
 
@@ -79,61 +72,50 @@ class SearchFragment : Fragment()
         return view
     }
 
-    private fun searchUser(input: String)
-    {
+    private fun searchUser(input: String) {
         val query = FirebaseDatabase.getInstance().getReference()
-                .child("Users")
-                .orderByChild("fullname")
-                .startAt(input)
-                .endAt(input + "\uf8ff") //유니코드 관련 필요사항
+            .child("Users")
+            .orderByChild("fullname")
+            .startAt(input)
+            .endAt(input + "\uf8ff") //유니코드 관련 필요사항
 
-        query.addValueEventListener(object : ValueEventListener
-        {
-            override fun onDataChange(dataSnapshot: DataSnapshot)
-            {
+        query.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
                 mUser?.clear()
 
-                for(snapshot in dataSnapshot.children)
-                {
+                for (snapshot in dataSnapshot.children) {
                     val user = snapshot.getValue(User::class.java)
-                    if(user != null)
-                    {
+                    if (user != null) {
                         mUser?.add(user)
                     }
                 }
                 userAdapter?.notifyDataSetChanged()
             }
-            override fun onCancelled(error: DatabaseError)
-            {
+
+            override fun onCancelled(error: DatabaseError) {
             }
         })
     }
 
     //검색
-    private fun retrieveUsers()
-    {
+    private fun retrieveUsers() {
         val userRef = FirebaseDatabase.getInstance().getReference().child("Users")
-        userRef.addValueEventListener(object : ValueEventListener
-        {
-            override fun onDataChange(dataSnapshot: DataSnapshot)
-            {
-                if (view?.search_edit_text?.text.toString() == "")
-                {
+        userRef.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                if (view?.search_edit_text?.text.toString() == "") {
                     mUser?.clear()
 
-                    for(snapshot in dataSnapshot.children)
-                    {
+                    for (snapshot in dataSnapshot.children) {
                         val user = snapshot.getValue(User::class.java)
-                        if(user != null)
-                        {
+                        if (user != null) {
                             mUser?.add(user)
                         }
                     }
                     userAdapter?.notifyDataSetChanged()
                 }
             }
-            override fun onCancelled(error: DatabaseError)
-            {
+
+            override fun onCancelled(error: DatabaseError) {
             }
         })
     }

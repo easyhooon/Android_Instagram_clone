@@ -26,7 +26,7 @@ import com.theartofdev.edmodo.cropper.CropImage
 import kotlinx.android.synthetic.main.activity_account_settings.*
 import kr.ac.konkuk.instagramclone.Model.User
 
-class AccountSettingsActivity : AppCompatActivity()
+class AccountSettingActivity : AppCompatActivity()
 {
     private lateinit var firebaseUser: FirebaseUser
     private var checker = ""
@@ -45,7 +45,7 @@ class AccountSettingsActivity : AppCompatActivity()
         logout_btn.setOnClickListener {
             FirebaseAuth.getInstance().signOut()
 
-            val intent = Intent(this@AccountSettingsActivity, SignInActivity::class.java)
+            val intent = Intent(this@AccountSettingActivity, SignInActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
             startActivity(intent)
             finish()
@@ -56,7 +56,7 @@ class AccountSettingsActivity : AppCompatActivity()
 
             CropImage.activity()
                 .setAspectRatio(1, 1)
-                .start(this@AccountSettingsActivity)
+                .start(this@AccountSettingActivity)
         }
 
         save_infor_profile_btn.setOnClickListener {
@@ -103,7 +103,7 @@ class AccountSettingsActivity : AppCompatActivity()
 
                 Toast.makeText(this, "Account Information has been updated successfully", Toast.LENGTH_LONG).show()
 
-                val intent = Intent(this@AccountSettingsActivity, MainActivity::class.java)
+                val intent = Intent(this@AccountSettingActivity, MainActivity::class.java)
                 startActivity(intent)
                 finish()
             }
@@ -183,7 +183,7 @@ class AccountSettingsActivity : AppCompatActivity()
 
                         Toast.makeText(this, "Account Information has been updated successfully", Toast.LENGTH_LONG).show()
 
-                        val intent = Intent(this@AccountSettingsActivity, MainActivity::class.java)
+                        val intent = Intent(this@AccountSettingActivity, MainActivity::class.java)
                         startActivity(intent)
                         finish()
                         progressDialog.dismiss()
@@ -193,8 +193,7 @@ class AccountSettingsActivity : AppCompatActivity()
                         progressDialog.dismiss()
                     }
 
-                    }
-                )
+                    })
 
             }
 

@@ -16,43 +16,38 @@ class Post {
         this.description = description
     }
 
-    fun getPostid(): String{
+    fun getPostid(): String {
         return postid
     }
 
-    fun getPostimage(): String{
+    fun getPostimage(): String {
         return postimage
     }
 
-    fun getPublisher(): String{
+    fun getPublisher(): String {
         return publisher
     }
 
-    fun getDescription(): String{
+    fun getDescription(): String {
         return description
     }
 
-    fun serPostid(postid: String)
-    {
+    fun serPostid(postid: String) {
         this.postid = postid
     }
 
-    fun serPostimage(postimage: String)
-    {
+    fun serPostimage(postimage: String) {
         this.postimage = postimage
     }
 
 
-    fun serPublisher(publisher: String)
-    {
+    fun serPublisher(publisher: String) {
         this.publisher = publisher
     }
 
-    fun serDescription(description: String)
-    {
+    fun serDescription(description: String) {
         this.description = description
     }
-
 
 
 }

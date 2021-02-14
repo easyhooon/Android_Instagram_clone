@@ -1,7 +1,6 @@
 package kr.ac.konkuk.instagramclone.Model
 
-class User
-{
+class User {
     private var username: String = ""
     private var fullname: String = ""
     private var bio: String = ""
@@ -10,8 +9,7 @@ class User
 
     constructor()
 
-    constructor(username: String, fullname: String, bio: String, image: String, uid:String)
-    {
+    constructor(username: String, fullname: String, bio: String, image: String, uid: String) {
         this.username = username
         this.fullname = fullname
         this.bio = bio
@@ -19,53 +17,43 @@ class User
         this.uid = uid
     }
 
-    fun getUsername(): String
-    {
+    fun getUsername(): String {
         return username
     }
 
-    fun setUsername(username: String)
-    {
+    fun setUsername(username: String) {
         this.username = username
     }
 
-    fun getFullname(): String
-    {
+    fun getFullname(): String {
         return fullname
     }
 
-    fun setFullname(fullname: String)
-    {
+    fun setFullname(fullname: String) {
         this.fullname = fullname
     }
 
-    fun getBio(): String
-    {
+    fun getBio(): String {
         return bio
     }
 
-    fun setBio(bio: String)
-    {
+    fun setBio(bio: String) {
         this.bio = bio
     }
 
-    fun getImage(): String
-    {
+    fun getImage(): String {
         return image
     }
 
-    fun setImage(image: String)
-    {
+    fun setImage(image: String) {
         this.image = image
     }
 
-    fun getUID(): String
-    {
+    fun getUID(): String {
         return uid
     }
 
-    fun serUID(uid: String)
-    {
+    fun serUID(uid: String) {
         this.uid = username
     }
 
