@@ -14,7 +14,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.squareup.picasso.Picasso
-import kr.ac.konkuk.instagramclone.AccountSettingActivity
+import kr.ac.konkuk.instagramclone.AccountsSettingActivity
 import kr.ac.konkuk.instagramclone.R
 import kotlinx.android.synthetic.main.fragment_profile.view.*
 import kr.ac.konkuk.instagramclone.Model.User
@@ -63,7 +63,7 @@ class ProfileFragment : Fragment() {
 
             when
             {
-                getButtonText == "Edit Profile" -> startActivity(Intent(context, AccountSettingActivity::class.java))
+                getButtonText == "Edit Profile" -> startActivity(Intent(context, AccountsSettingActivity::class.java))
 
                 getButtonText == "Follow" -> {
 

@@ -15,7 +15,7 @@
         <activity android:name=".CommentsActivity"></activity>
         <activity android:name=".AddPostActivity" />
         <activity android:name=".SignUpActivity" />
-        <activity android:name=".AccountSettingActivity" />
+        <activity android:name=".AccountsSettingActivity" />
         <activity android:name=".SignInActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

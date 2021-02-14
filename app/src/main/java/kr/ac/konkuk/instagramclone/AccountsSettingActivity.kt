@@ -26,7 +26,7 @@ import com.theartofdev.edmodo.cropper.CropImage
 import kotlinx.android.synthetic.main.activity_account_settings.*
 import kr.ac.konkuk.instagramclone.Model.User
 
-class AccountSettingActivity : AppCompatActivity()
+class AccountsSettingActivity : AppCompatActivity()
 {
     private lateinit var firebaseUser: FirebaseUser
     private var checker = ""
@@ -45,7 +45,7 @@ class AccountSettingActivity : AppCompatActivity()
         logout_btn.setOnClickListener {
             FirebaseAuth.getInstance().signOut()
 
-            val intent = Intent(this@AccountSettingActivity, SignInActivity::class.java)
+            val intent = Intent(this@AccountsSettingActivity, SignInActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
             startActivity(intent)
             finish()
@@ -56,7 +56,7 @@ class AccountSettingActivity : AppCompatActivity()
 
             CropImage.activity()
                 .setAspectRatio(1, 1)
-                .start(this@AccountSettingActivity)
+                .start(this@AccountsSettingActivity)
         }
 
         save_infor_profile_btn.setOnClickListener {
@@ -103,7 +103,7 @@ class AccountSettingActivity : AppCompatActivity()
 
                 Toast.makeText(this, "Account Information has been updated successfully", Toast.LENGTH_LONG).show()
 
-                val intent = Intent(this@AccountSettingActivity, MainActivity::class.java)
+                val intent = Intent(this@AccountsSettingActivity, MainActivity::class.java)
                 startActivity(intent)
                 finish()
             }
@@ -183,7 +183,7 @@ class AccountSettingActivity : AppCompatActivity()
 
                         Toast.makeText(this, "Account Information has been updated successfully", Toast.LENGTH_LONG).show()
 
-                        val intent = Intent(this@AccountSettingActivity, MainActivity::class.java)
+                        val intent = Intent(this@AccountsSettingActivity, MainActivity::class.java)
                         startActivity(intent)
                         finish()
                         progressDialog.dismiss()
