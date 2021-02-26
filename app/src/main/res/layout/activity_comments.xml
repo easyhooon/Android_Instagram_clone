@@ -54,7 +54,7 @@
     </ImageView>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_view_commnets"
+        android:id="@+id/recycler_view_comments"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/post_image_comments"

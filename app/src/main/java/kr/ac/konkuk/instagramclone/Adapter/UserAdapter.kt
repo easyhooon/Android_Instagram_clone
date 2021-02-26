@@ -26,8 +26,7 @@ import kr.ac.konkuk.instagramclone.R
 class UserAdapter(
     private var mContext: Context,
     private var mUser: List<User>,
-    private var isFragment: Boolean = false
-) : RecyclerView.Adapter<UserAdapter.ViewHolder>() {
+    private var isFragment: Boolean = false) : RecyclerView.Adapter<UserAdapter.ViewHolder>() {
     private var firebaseUser: FirebaseUser? = FirebaseAuth.getInstance().currentUser
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserAdapter.ViewHolder {

@@ -48,9 +48,9 @@ class PostAdapter
         Picasso.get().load(post.getPostimage()).into(holder.postImage)
 
         if (post.getDescription().equals("")) {
-            holder.description.visibility == View.GONE
+            holder.description.visibility = View.GONE
         } else {
-            holder.description.visibility == View.VISIBLE
+            holder.description.visibility = View.VISIBLE
             holder.description.setText(post.getDescription())
         }
 

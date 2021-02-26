@@ -7,6 +7,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DataSnapshot
@@ -17,6 +20,7 @@ import com.squareup.picasso.Picasso
 import kr.ac.konkuk.instagramclone.AccountsSettingActivity
 import kr.ac.konkuk.instagramclone.R
 import kotlinx.android.synthetic.main.fragment_profile.view.*
+import kr.ac.konkuk.instagramclone.Model.Post
 import kr.ac.konkuk.instagramclone.Model.User
 
 // TODO: Rename parameter arguments, choose names that match
@@ -31,6 +35,8 @@ private const val ARG_PARAM2 = "param2"
 class ProfileFragment : Fragment() {
     private lateinit var profileId : String
     private lateinit var firebaseUser: FirebaseUser
+
+    var postList: List<Post>? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -57,6 +63,12 @@ class ProfileFragment : Fragment() {
         {
             checkFollowAndFollowingButtonStatus()
         }
+
+        var recyclerViewUploadImages: RecyclerView
+        recyclerViewUploadImages = view.findViewById(R.id.recycler_view_upload_pic)
+        recyclerViewUploadImages.setHasFixedSize(true)
+        val linearLayoutManager: LinearLayoutManager = GridLayoutManager(context, 3)
+
 
         view.edit_account_settings_btn.setOnClickListener {
             val getButtonText = view.edit_account_settings_btn.text.toString()
